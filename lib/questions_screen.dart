@@ -9,9 +9,8 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class QuestionsScreenState extends State<QuestionsScreen> {
-  @override
-  Widget build(BuildContext context) {
-    var currentQuestionIndex = 0;
+  
+  var currentQuestionIndex = 0;
     void answerQuestion() {
       
       setState(() {
@@ -19,6 +18,9 @@ class QuestionsScreenState extends State<QuestionsScreen> {
     });
       
     }
+  @override
+  Widget build(BuildContext context) {
+    
     
     final currentQuestion = questions[currentQuestionIndex];
     return SizedBox(
