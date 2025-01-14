@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_me/start_screen.dart';
+import 'package:quiz_me/data/questions.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({
@@ -9,9 +10,23 @@ class ResultsScreen extends StatelessWidget {
   });
   final List<String> chosenAnswers;
   final Function startQuiz;
-  
+  List<Map<String, Object>> getSummaryData() {
+    List<Map<String, Object>> summaryData = [];
+    for (int i = 0; i < chosenAnswers.length; i++) {
+      summaryData.add({
+        "question_index": i + 1,
+        "question" : questions[i].text,
+        "your_answer": chosenAnswers[i],
+        "correctAnswer": questions[i].answers[0]
+      });
+    }
+    return summaryData;
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    //  print(getSummaryData());
     return SizedBox(
       width: double.infinity,
       child: Container(
