@@ -33,7 +33,7 @@ class _QuizState extends State<Quiz> {
         // ResultsScreen();
         
         activeScreen = 'results-screen';
-        selectedAnswers = [];
+        // selectedAnswers = [];
       });
     }
   }
@@ -55,7 +55,7 @@ class _QuizState extends State<Quiz> {
       );
     } else {
       screen = ResultsScreen(
-          chosenAnswers: selectedAnswers, startQuiz: restartScreen);
+          chosenAnswers: selectedAnswers);
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,

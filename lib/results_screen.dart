@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_me/questions_screen.dart';
+import 'package:quiz_me/questions_summary.dart';
 import 'package:quiz_me/start_screen.dart';
 import 'package:quiz_me/data/questions.dart';
 
@@ -6,26 +9,30 @@ class ResultsScreen extends StatelessWidget {
   const ResultsScreen({
     super.key,
     required this.chosenAnswers,
-    required this.startQuiz,
   });
   final List<String> chosenAnswers;
-  final Function startQuiz;
+  // final Function startQuiz;
   List<Map<String, Object>> getSummaryData() {
     List<Map<String, Object>> summaryData = [];
     for (int i = 0; i < chosenAnswers.length; i++) {
       summaryData.add({
         "question_index": i + 1,
-        "question" : questions[i].text,
+        "question": questions[i].text,
         "your_answer": chosenAnswers[i],
-        "correctAnswer": questions[i].answers[0]
+        "correct_answer": questions[i].answers[0]
       });
     }
     return summaryData;
   }
 
-
   @override
   Widget build(BuildContext context) {
+    final SummaryData = getSummaryData();
+    final numTotalQuestions=questions.length;
+    final numCorrectQuestions= SummaryData.where((data){
+      return data['your_answer'] == data['correct_answer'];
+    }).length;
+
     //  print(getSummaryData());
     return SizedBox(
       width: double.infinity,
@@ -34,19 +41,23 @@ class ResultsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("You answered X out of Y questions correctly"),
+            Text("You answered $numCorrectQuestions out of $numTotalQuestions questions correctly"),
             SizedBox(
               height: 30,
             ),
-            Text("List of answers and questions...."),
+            QuestionsSummary(
+              summaryData: SummaryData,
+            ),
             SizedBox(
               height: 30,
             ),
             TextButton(
                 onPressed: () {
-                  startQuiz();
+                  // startQuiz();
                 },
-                child: Text("Restart Quiz!")),
+                child: Text(
+                  "Restart Quiz!",
+                )),
           ],
         ),
       ),
