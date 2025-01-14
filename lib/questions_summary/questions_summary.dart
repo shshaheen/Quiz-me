@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_me/data/questions.dart';
-import 'package:quiz_me/questions_summary/questions_identifier.dart';
+
 import 'package:quiz_me/questions_summary/summary_item.dart';
 
 bool isCorrect(String x, String y) {
