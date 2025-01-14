@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_me/start_screen.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key});
+  const ResultsScreen({
+    super.key,
+    required this.selectedAnswers,
+    required this.startQuiz,
+  });
+  final List<String> selectedAnswers;
+  final Function startQuiz;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -12,13 +19,18 @@ class ResultsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("You answered X out of Y questions correctly"),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             Text("List of answers and questions...."),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             TextButton(
-              onPressed: (){}, 
-              child: Text("Restart Quiz!")
-              ),
+                onPressed: () {
+                  startQuiz();
+                },
+                child: Text("Restart Quiz!")),
           ],
         ),
       ),
